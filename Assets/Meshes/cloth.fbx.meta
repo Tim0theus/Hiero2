@@ -1,0 +1,571 @@
+fileFormatVersion: 2
+guid: 3ca9adf9f66032d4f9e6f6cdcf51641e
+timeCreated: 1502460075
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Basket
+    100004: basket
+    100006: basketBase
+    100008: Bone001
+    100010: Bone002
+    100012: Bone003
+    100014: Bone004
+    100016: Bone005
+    100018: Bone006
+    100020: Bone007
+    100022: Bone008
+    100024: Bone009
+    100026: Bone010
+    100028: Bone011
+    100030: Bone012
+    100032: Bone013
+    100034: Bone014
+    100036: Bone015
+    100038: Box001
+    100040: Box002
+    100042: Box003
+    100044: breadHalf01
+    100046: breadHalf02
+    100048: cloth
+    100050: crown
+    100052: doorBolt
+    100054: Fin00
+    100056: Fin00 1
+    100058: Fin01
+    100060: Fin01 1
+    100062: Fin02
+    100064: Fin02 1
+    100066: Fin03
+    100068: Fin03 1
+    100070: Fin04
+    100072: Fin04 1
+    100074: Fin05
+    100076: Fin05 1
+    100078: Fin06
+    100080: Fin06 1
+    100082: Fin07
+    100084: Fin07 1
+    100086: Fin08
+    100088: Fin08 1
+    100090: Fin09
+    100092: Fin09 1
+    100094: Group001
+    100096: handle
+    100098: handle001
+    100100: head
+    100102: Helix001
+    100104: jar
+    100106: jarStand
+    100108: Line001
+    100110: Line040
+    100112: Line041
+    100114: Line042
+    100116: Line043
+    100118: Line044
+    100120: Line045
+    100122: Line046
+    100124: Line047
+    100126: Line048
+    100128: Line049
+    100130: Line051
+    100132: Line052
+    100134: Line053
+    100136: Line054
+    100138: Line055
+    100140: Line056
+    100142: Line057
+    100144: Line058
+    100146: Line060
+    100148: Line061
+    100150: Line062
+    100152: Line063
+    100154: Line064
+    100156: Line065
+    100158: Line066
+    100160: Line067
+    100162: Line068
+    100164: Line069
+    100166: Line070
+    100168: Line071
+    100170: Line073
+    100172: Line074
+    100174: Line076
+    100176: Line077
+    100178: Line078
+    100180: Line079
+    100182: Line080
+    100184: Line100
+    100186: Mesh
+    100188: mesh
+    100190: mesh001
+    100192: mouth
+    100194: Plane011
+    100196: Plane012
+    100198: quailChick
+    100200: Reed1
+    100202: Reed2
+    100204: Reed3
+    100206: Reed4
+    100208: ReedHead1
+    100210: ReedHead2
+    100212: ring
+    100214: ring001
+    100216: Sphere001
+    100218: Sphere004
+    100220: Stool
+    100222: viper
+    100224: wick
+    100226: WickBase
+    400000: //RootNode
+    400002: Basket
+    400004: basket
+    400006: basketBase
+    400008: Bone001
+    400010: Bone002
+    400012: Bone003
+    400014: Bone004
+    400016: Bone005
+    400018: Bone006
+    400020: Bone007
+    400022: Bone008
+    400024: Bone009
+    400026: Bone010
+    400028: Bone011
+    400030: Bone012
+    400032: Bone013
+    400034: Bone014
+    400036: Bone015
+    400038: Box001
+    400040: Box002
+    400042: Box003
+    400044: breadHalf01
+    400046: breadHalf02
+    400048: cloth
+    400050: crown
+    400052: doorBolt
+    400054: Fin00
+    400056: Fin00 1
+    400058: Fin01
+    400060: Fin01 1
+    400062: Fin02
+    400064: Fin02 1
+    400066: Fin03
+    400068: Fin03 1
+    400070: Fin04
+    400072: Fin04 1
+    400074: Fin05
+    400076: Fin05 1
+    400078: Fin06
+    400080: Fin06 1
+    400082: Fin07
+    400084: Fin07 1
+    400086: Fin08
+    400088: Fin08 1
+    400090: Fin09
+    400092: Fin09 1
+    400094: Group001
+    400096: handle
+    400098: handle001
+    400100: head
+    400102: Helix001
+    400104: jar
+    400106: jarStand
+    400108: Line001
+    400110: Line040
+    400112: Line041
+    400114: Line042
+    400116: Line043
+    400118: Line044
+    400120: Line045
+    400122: Line046
+    400124: Line047
+    400126: Line048
+    400128: Line049
+    400130: Line051
+    400132: Line052
+    400134: Line053
+    400136: Line054
+    400138: Line055
+    400140: Line056
+    400142: Line057
+    400144: Line058
+    400146: Line060
+    400148: Line061
+    400150: Line062
+    400152: Line063
+    400154: Line064
+    400156: Line065
+    400158: Line066
+    400160: Line067
+    400162: Line068
+    400164: Line069
+    400166: Line070
+    400168: Line071
+    400170: Line073
+    400172: Line074
+    400174: Line076
+    400176: Line077
+    400178: Line078
+    400180: Line079
+    400182: Line080
+    400184: Line100
+    400186: Mesh
+    400188: mesh
+    400190: mesh001
+    400192: mouth
+    400194: Plane011
+    400196: Plane012
+    400198: quailChick
+    400200: Reed1
+    400202: Reed2
+    400204: Reed3
+    400206: Reed4
+    400208: ReedHead1
+    400210: ReedHead2
+    400212: ring
+    400214: ring001
+    400216: Sphere001
+    400218: Sphere004
+    400220: Stool
+    400222: viper
+    400224: wick
+    400226: WickBase
+    2300000: //RootNode
+    2300002: Box001
+    2300004: Box002
+    2300006: Box003
+    2300008: breadHalf01
+    2300010: breadHalf02
+    2300012: cloth
+    2300014: crown
+    2300016: doorBolt
+    2300018: Fin00
+    2300020: Fin00 1
+    2300022: Fin01
+    2300024: Fin01 1
+    2300026: Fin02
+    2300028: Fin02 1
+    2300030: Fin03
+    2300032: Fin03 1
+    2300034: Fin04
+    2300036: Fin04 1
+    2300038: Fin05
+    2300040: Fin05 1
+    2300042: Fin06
+    2300044: Fin06 1
+    2300046: Fin07
+    2300048: Fin07 1
+    2300050: Fin08
+    2300052: Fin08 1
+    2300054: Fin09
+    2300056: Fin09 1
+    2300058: handle
+    2300060: head
+    2300062: jar
+    2300064: jarStand
+    2300066: Line041
+    2300068: Line042
+    2300070: Line043
+    2300072: Line044
+    2300074: Line045
+    2300076: Line046
+    2300078: Line047
+    2300080: Line048
+    2300082: Line049
+    2300084: Line051
+    2300086: Line052
+    2300088: Line053
+    2300090: Line054
+    2300092: Line055
+    2300094: Line056
+    2300096: Line057
+    2300098: Line058
+    2300100: Line060
+    2300102: Line061
+    2300104: Line062
+    2300106: Line063
+    2300108: Line064
+    2300110: Line065
+    2300112: Line066
+    2300114: Line067
+    2300116: Line068
+    2300118: Line069
+    2300120: Line070
+    2300122: Line071
+    2300124: Line073
+    2300126: Line074
+    2300128: Line076
+    2300130: Line077
+    2300132: Line078
+    2300134: Line079
+    2300136: Line080
+    2300138: Line100
+    2300140: Mesh
+    2300142: mesh
+    2300144: mesh001
+    2300146: mouth
+    2300148: Plane011
+    2300150: Plane012
+    2300152: quailChick
+    2300154: Reed1
+    2300156: Reed2
+    2300158: Reed3
+    2300160: Reed4
+    2300162: ReedHead1
+    2300164: ReedHead2
+    2300166: ring
+    2300168: Sphere001
+    2300170: Sphere004
+    2300172: wick
+    3300000: //RootNode
+    3300002: Box001
+    3300004: Box002
+    3300006: Box003
+    3300008: breadHalf01
+    3300010: breadHalf02
+    3300012: cloth
+    3300014: crown
+    3300016: doorBolt
+    3300018: Fin00
+    3300020: Fin00 1
+    3300022: Fin01
+    3300024: Fin01 1
+    3300026: Fin02
+    3300028: Fin02 1
+    3300030: Fin03
+    3300032: Fin03 1
+    3300034: Fin04
+    3300036: Fin04 1
+    3300038: Fin05
+    3300040: Fin05 1
+    3300042: Fin06
+    3300044: Fin06 1
+    3300046: Fin07
+    3300048: Fin07 1
+    3300050: Fin08
+    3300052: Fin08 1
+    3300054: Fin09
+    3300056: Fin09 1
+    3300058: handle
+    3300060: head
+    3300062: jar
+    3300064: jarStand
+    3300066: Line041
+    3300068: Line042
+    3300070: Line043
+    3300072: Line044
+    3300074: Line045
+    3300076: Line046
+    3300078: Line047
+    3300080: Line048
+    3300082: Line049
+    3300084: Line051
+    3300086: Line052
+    3300088: Line053
+    3300090: Line054
+    3300092: Line055
+    3300094: Line056
+    3300096: Line057
+    3300098: Line058
+    3300100: Line060
+    3300102: Line061
+    3300104: Line062
+    3300106: Line063
+    3300108: Line064
+    3300110: Line065
+    3300112: Line066
+    3300114: Line067
+    3300116: Line068
+    3300118: Line069
+    3300120: Line070
+    3300122: Line071
+    3300124: Line073
+    3300126: Line074
+    3300128: Line076
+    3300130: Line077
+    3300132: Line078
+    3300134: Line079
+    3300136: Line080
+    3300138: Line100
+    3300140: Mesh
+    3300142: mesh
+    3300144: mesh001
+    3300146: mouth
+    3300148: Plane011
+    3300150: Plane012
+    3300152: quailChick
+    3300154: Reed1
+    3300156: Reed2
+    3300158: Reed3
+    3300160: Reed4
+    3300162: ReedHead1
+    3300164: ReedHead2
+    3300166: ring
+    3300168: Sphere001
+    3300170: Sphere004
+    3300172: wick
+    4300000: Cylinder001
+    4300002: Mesh
+    4300004: doorBolt
+    4300006: jarStand
+    4300008: Box001
+    4300010: Box002
+    4300012: cloth
+    4300014: Sphere001
+    4300016: quailChick
+    4300018: wick
+    4300020: jar
+    4300022: Plane011
+    4300024: Box003
+    4300026: Line077
+    4300028: Line066
+    4300030: Line065
+    4300032: Line067
+    4300034: Line068
+    4300036: Line043
+    4300038: Line044
+    4300040: Line045
+    4300042: Line046
+    4300044: Line047
+    4300046: Line048
+    4300048: Line049
+    4300050: Line062
+    4300052: Line063
+    4300054: Line064
+    4300056: Line060
+    4300058: Line061
+    4300060: Line071
+    4300062: Line070
+    4300064: Line069
+    4300066: Line078
+    4300068: Line079
+    4300070: Line080
+    4300072: Line076
+    4300074: Line053
+    4300076: Line042
+    4300078: Line051
+    4300080: Line052
+    4300082: Line041
+    4300084: Line054
+    4300086: Line056
+    4300088: Line055
+    4300090: Line057
+    4300092: Line058
+    4300094: Line073
+    4300096: Line074
+    4300098: Line100
+    4300100: Plane012
+    4300102: head
+    4300104: crown
+    4300106: Sphere004
+    4300108: mouth
+    4300110: breadHalf02
+    4300112: breadHalf01
+    4300114: handle
+    4300116: ring
+    4300118: mesh
+    4300120: mesh001
+    4300122: Reed2
+    4300124: Reed3
+    4300126: ReedHead1
+    4300128: Fin00
+    4300130: Fin01
+    4300132: Fin02
+    4300134: Fin03
+    4300136: Fin04
+    4300138: Fin05
+    4300140: Fin06
+    4300142: Fin07
+    4300144: Fin08
+    4300146: Fin09
+    4300148: Reed1
+    4300150: ReedHead2
+    4300152: Fin09
+    4300154: Fin04
+    4300156: Fin03
+    4300158: Fin01
+    4300160: Fin00
+    4300162: Fin08
+    4300164: Fin02
+    4300166: Fin05
+    4300168: Fin06
+    4300170: Fin07
+    4300172: Reed4
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

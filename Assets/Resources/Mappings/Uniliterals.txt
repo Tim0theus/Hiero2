@@ -1,0 +1,25 @@
+󳮮	big	egyptian vulture	Ꜣ	0	A
+󳛆	flat	arm	Ꜥ	1	a
+󳛳	tall	lower leg	b	2	b
+󳛐	flat	hand	d	3	d
+󳷡	flat	cobra	ḏ	4	D
+󳷝	flat	horned viper	f	5	f
+󴦪	small	jar stand	g	6	g
+󴅤	big	reed shelter, enclosure	h	7	h
+󴣺	tall	twisted wick, rope	ḥ	8	H
+󳼲	tall	reed	j	9	j
+󴤆	small	basket with handle	k	10	k
+󳯑	big	owl	m	11	m
+󴂿	flat	ripple of water	n	12	n
+󴑬	small	reed mat, stool	p	13	p
+󴂫	small	slope of a hill	q	14	q
+󳚢	flat	mouth	r	15	r
+󴗛	tall	folded cloth, linen	s	16	s
+󴃉	flat	garden pool, basin	š	17	S
+󴨿	small	bun, bread	t	18	t
+󴣔	flat	tethering rope	ṯ	19	T
+󳰎	big	quail chick	w	20	w
+󴫙	small	placenta	ḫ	21	x
+󳪱	flat	animal belly with udder or tail	ẖ	22	X
+󳼳	big	reeds, pair of	y	23	y
+󴇟	flat	door bolt, lock	z	24	z

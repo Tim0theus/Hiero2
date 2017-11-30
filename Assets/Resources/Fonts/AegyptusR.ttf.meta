@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c31889e139f49eb44872f598dee4a264
+timeCreated: 1492088586
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 100
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aegyptus
+  fontNames:
+  - Aegyptus
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 191ad4365faf2474f9658672578d9ce7, type: 3}
+  - {fileID: 12800000, guid: 0ed146fdab9af7946a9fca9ad3f761f6, type: 3}
+  - {fileID: 12800000, guid: 8dfbc79f4ea675144859ada3ec1dcefa, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
