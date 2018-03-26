@@ -50,6 +50,11 @@ public class GroupControl : HighlightableUIControl, IPointerEnterHandler, IPoint
         _selectable = GetComponent<Selectable>();
     }
 
+    private void Start()
+    {
+        if (StartInactive) DeActivate();
+    }
+
     public override void Activate() {
         foreach (HighlightableUIControl uiElement in _uiElements) {
             uiElement.Activate();

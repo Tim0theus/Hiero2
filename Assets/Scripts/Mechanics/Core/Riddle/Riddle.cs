@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
@@ -12,36 +13,55 @@ public class Riddle : MonoBehaviour, IObservable {
     public List<Texture2D> GlyphsForPicker = new List<Texture2D>();
     public List<Activatable> Indicators = new List<Activatable>();
 
+    public EventHandler onSolved;
+    public EventHandler onFailed;
+    public EventHandler onReset;
+
     private readonly HashSet<RiddleAggregator> _riddleBases = new HashSet<RiddleAggregator>();
 
-    public RiddleStatus Status {
+    public bool IsSolved {
         get {
-            return new RiddleStatus(_solved, _failed);
+            return _solved;
         }
     }
 
-    private bool _solved;
+    public bool IsFailed
+    {
+        get
+        {
+            return _failed;
+        }
+    }
+
+    public virtual void Solve()
+    {
+        Solved();
+    }
+
+    protected bool _solved;
     protected void Solved() {
         if (!_solved) {
             _solved = true;
             _failed = false;
+            if (onSolved != null) onSolved(this, null);
             Notify(NotificationDelay);
             Indicate(IndicationDelay);
             FillPicker();
         }
     }
 
-    private bool _failed;
+    protected bool _failed;
     protected void Failed() {
         if (!_failed) {
             _solved = false;
             _failed = true;
+            if (onFailed != null) onFailed(this, null);
             Notify();
         }
     }
 
 
-    private void Notify(float delayInSeconds = 0) {
+    protected void Notify(float delayInSeconds = 0) {
         if (delayInSeconds > 0) {
             StartCoroutine(DelayedNotify(delayInSeconds));
         }
@@ -60,7 +80,7 @@ public class Riddle : MonoBehaviour, IObservable {
         }
     }
 
-    private void Indicate(float delayInSeconds) {
+    protected void Indicate(float delayInSeconds) {
         if (delayInSeconds > 0) {
             StartCoroutine(DelayedIndicate(delayInSeconds));
         }
@@ -79,7 +99,7 @@ public class Riddle : MonoBehaviour, IObservable {
         }
     }
 
-    private void FillPicker() {
+    protected void FillPicker() {
         foreach (Texture2D glyph in GlyphsForPicker) {
             LiteralPicker.AddNewGlyph(glyph.name);
         }
@@ -101,9 +121,10 @@ public class Riddle : MonoBehaviour, IObservable {
         enabled = false;
     }
 
-    protected void Reset() {
+    public virtual void Reset() {
         _failed = false;
         _solved = false;
+        if (onReset != null) onReset(this, null);
     }
 
 
@@ -117,10 +138,19 @@ public class Riddle : MonoBehaviour, IObservable {
             if (Application.isPlaying) {
                 if (GUILayout.Button("Solve")) {
 
-                    foreach (Object o in targets) {
+                    foreach (UnityEngine.Object o in targets) {
 
                         Riddle riddle = (Riddle)o;
                         riddle.Solved();
+                    }
+                }
+                if (GUILayout.Button("Unsolve"))
+                {
+                    foreach (UnityEngine.Object o in targets)
+                    {
+
+                        Riddle riddle = (Riddle)o;
+                        riddle.Failed();
                     }
                 }
             }

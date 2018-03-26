@@ -10,7 +10,11 @@ public class GameObjectTriggerVolume : TriggerVolume {
         }
     }
 
-    protected override void Deactivte() {
+    protected override void Check()
+    {
+    }
+
+    protected override void Deactivate() {
         foreach (GameObject activatable in GameObjects) {
             activatable.SetActive(false);
         }

@@ -14,7 +14,12 @@ public class BreakBySwipe : RiddleAggregator, IBeginDragHandler, IDragHandler {
     public void OnBeginDrag(PointerEventData eventData) { }
 
     public void OnDrag(PointerEventData eventData) {
-        if (RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name) return;
+        if (RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name)
+        {
+            SoundController.instance.Play("error");
+            GameControl.instance.SubtractPoint(null, null);
+            return;
+        }
 
         Vector3 toPlayer = (PlayerMechanics.Instance.transform.position - transform.position).normalized;
         float angleToPlayer = Vector3.Dot(transform.forward, toPlayer);

@@ -1,3 +1,4 @@
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -6,6 +7,15 @@ using UnityEngine;
 [RequireComponent(typeof(AnimatorActivatable))]
 public class RiddleDoor : RiddleAggregator {
 
+    private void Start()
+    {
+        GetComponent<AnimatorActivatable>().OnAnimationFinished += onClosed;
+    }
+
+    private void onClosed(object o, EventArgs e)
+    {
+        Reset();
+    }
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(RiddleDoor))]
@@ -17,7 +27,7 @@ public class RiddleDoor : RiddleAggregator {
 
             if (GUILayout.Button("Collect Riddles")) {
 
-                foreach (Object element in targets) {
+                foreach (UnityEngine.Object element in targets) {
                     RiddleDoor riddleDoor = (RiddleDoor)element;
 
                     Transform riddleTransform = riddleDoor.transform.Find("Door").Find("Riddles");

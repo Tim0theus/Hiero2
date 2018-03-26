@@ -40,13 +40,15 @@ public class DynamicTwoTransformTransformer : MonoBehaviour {
             _transformable.Rotation = _to.rotation;
             _transformable.LocalScale = _toScale;
 
-            if(Finished != null) {
-                Finished(null, null);
+            _transformable.Parent = _to;
+
+            enabled = false;
+
+            if (Finished != null) {
+                Finished(this, null);
                 Finished = null;
             }
 
-            _transformable.Parent = _to;
-            enabled = false;
         }
     }
 

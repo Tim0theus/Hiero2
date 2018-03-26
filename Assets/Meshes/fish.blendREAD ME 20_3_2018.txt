@@ -1,0 +1,8 @@
+/////// some Data just for fun /////// /////// temporary fish spine tool script saved /////// 
+/////// file saved at  D:\Unity\HieroQuest\Assets\Meshes\fish.blend
+//User name is beckm
+//last edited script on 20_3_2018
+//your text script is at this location >> D:\Unity\HieroQuest\Assets\Meshes\fish.blend\Fish spine rig.py
+//proccessor is of type AMD64
+//proccessor is a Intel64 Family 6 Model 94 Stepping 3, GenuineIntel
+//AMD is ok but Currently NVidia with CUDA renders faster.

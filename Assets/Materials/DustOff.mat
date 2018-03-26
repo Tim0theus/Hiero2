@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TransTex:
-        m_Texture: {fileID: 2800000, guid: 51a1aff0ff959de4a8df4dc5dffb657d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2eeba3e1bab38dc47880a55491af4d00, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _VisTransTex:
@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Brightness: 1
+    - _Brightness: 1.163
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -86,6 +86,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Opacity: 1.225
     - _Parallax: 0.02
     - _Reveal: 0
     - _SmoothnessTextureChannel: 0

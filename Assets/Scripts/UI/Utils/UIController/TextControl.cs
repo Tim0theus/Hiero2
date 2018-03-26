@@ -5,8 +5,12 @@ using UnityEngine.UI;
 public class TextControl : HighlightableUIControl {
     private Text _text;
 
+    private Color NormalColor;
+
     private void Awake() {
         _text = GetComponent<Text>();
+
+        NormalColor = _text.color;
 
         if (StartInactive) {
             DeActivate(0);

@@ -8,13 +8,21 @@ public class ToggleControl : HighlightableUIControl {
     private Image _background;
     private Image _checkmark;
 
+    private Color NormalColor;
+
     private void Awake() {
         _toggle = GetComponent<Toggle>();
 
         _background = transform.GetChild(0).GetComponent<Image>();
         _checkmark = _background.transform.GetChild(0).GetComponent<Image>();
 
-        if (StartInactive) {
+        NormalColor = _background.color;
+    }
+
+    private void Start()
+    {
+        if (StartInactive)
+        {
             DeActivate(0);
         }
     }
@@ -36,9 +44,7 @@ public class ToggleControl : HighlightableUIControl {
         _toggle.interactable = false;
         _background.CrossFadeColor(InactiveColor, fadeDuration, false, true);
 
-        if (_toggle.isOn) {
-            _checkmark.CrossFadeColor(InactiveColor, fadeDuration, false, true);
-        }
+        _checkmark.CrossFadeColor(InactiveColor, fadeDuration, false, true);
     }
 
     public override void Highlight() {
@@ -52,9 +58,11 @@ public class ToggleControl : HighlightableUIControl {
     public override void DeHighlight() {
         _background.CrossFadeColor(NormalColor, FadeDuration, false, true);
 
-        if (_toggle.isOn) {
+        if (_toggle.isOn)
+        {
             _checkmark.CrossFadeColor(NormalColor, FadeDuration, false, true);
         }
+
     }
 
 

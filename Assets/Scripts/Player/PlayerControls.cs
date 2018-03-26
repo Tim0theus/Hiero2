@@ -39,7 +39,7 @@ public class PlayerControls : MonoBehaviour, IActivatable {
     [HideInInspector] public ControlType CurrentType;
     private ControlScheme _currentScheme;
 
-    private readonly Dictionary<ControlType, ControlScheme> _controls = new Dictionary<ControlType, ControlScheme>();
+    private Dictionary<ControlType, ControlScheme> _controls;
 
     public void Activate() {
         _currentScheme.Activate();
@@ -50,13 +50,18 @@ public class PlayerControls : MonoBehaviour, IActivatable {
     }
 
     private void Awake() {
-        Instance = this;
-    }
-
-    private void Start() {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         _characterController = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<Camera>();
+        _controls = new Dictionary<ControlType, ControlScheme>();
 
         _controls.Add(ControlType.FullscreenAndTouchJoystick, gameObject.AddComponent<FullscreenJoystickControlScheme>());
         _controls.Add(ControlType.TouchJoysticksOnly, gameObject.AddComponent<TouchJoystickControlScheme>());
@@ -109,16 +114,22 @@ public class PlayerControls : MonoBehaviour, IActivatable {
         float movementSideways = _currentScheme.MoveVector.x * DefaultMoveSpeed * MoveMultiplier;
 
         //Add sprint
-        movementInLookDir = movementInLookDir + movementInLookDir * sprint * SprintMultiplier;
-        movementSideways = movementSideways + movementSideways * sprint * SprintMultiplier;
+        movementInLookDir += movementInLookDir * sprint * SprintMultiplier;
+        movementSideways += movementSideways * sprint * SprintMultiplier;
 
         Vector3 transformedLookDir = transform.forward * movementInLookDir;
         Vector3 transformedSideways = transform.right * movementSideways;
         Vector3 gravity = Physics.gravity;
 
+        if (_currentScheme.MoveVector.magnitude != 0) GetComponent<PlayerAudio>().moving = true;
+
         _characterController.Move((transformedLookDir + transformedSideways + gravity) * Time.deltaTime);
     }
 
+    public void SetMoveSpeed(float value)
+    {
+        MoveMultiplier = Math.Max(1.0f, value);
+    }
 
     public void SetUserLookMultiplier(float value) {
         _userLookMultiplier = value;

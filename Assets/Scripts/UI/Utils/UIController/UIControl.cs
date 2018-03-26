@@ -4,7 +4,6 @@ public abstract class UIControl : Activatable {
     public float FadeDuration = 0.1f;
     public bool StartInactive;
 
-    public Color NormalColor = Color.white;
     public Color InactiveColor = Color.white.Transparent();
 }
 

@@ -21,7 +21,7 @@ public class PlayerMechanics : MonoBehaviour {
 
     public static PlayerMechanics Instance;
 
-    private readonly Dictionary<ControlMode, Mode> _modes = new Dictionary<ControlMode, Mode>();
+    private Dictionary<ControlMode, Mode> _modes;
 
     [HideInInspector]
     public ControlMode CurrentControlMode;
@@ -39,12 +39,37 @@ public class PlayerMechanics : MonoBehaviour {
 
     private static int _instanceId;
 
-    private void Awake() {
-        Instance = this;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        _modes = new Dictionary<ControlMode, Mode>();
 
         _instanceId = GetInstanceID();
-    }
-    private void Start() {
+
+        GameObject canvas = GameObject.FindWithTag("Canvas");
+        _modes.Add(ControlMode.FreeRoam, new FreeRoam(canvas));
+        _modes.Add(ControlMode.DimScreen, new DimScreen(canvas));
+        _modes.Add(ControlMode.ControlsFrozen, new ControlsFrozen(canvas));
+
+        foreach (Mode mode in _modes.Values)
+        {
+            mode.Leave();
+        }
+
+#if !(UNITY_EDITOR)
+        CurrentControlMode = ControlMode.FreeRoam;
+#endif
+
+        _currentMode = _modes[CurrentControlMode];
+        _currentMode.Enter();
 
         _difficultyLevels.Add(DifficultyLevel.Easy, new EasyDifficulty());
         _difficultyLevels.Add(DifficultyLevel.Medium, new MediumDifficulty());
@@ -57,34 +82,19 @@ public class PlayerMechanics : MonoBehaviour {
         _currentDifficulty = _difficultyLevels[CurrentDifficulty];
         _currentDifficulty.Enter();
 
-        PlayerControls playerControls = GetComponent<PlayerControls>();
-        GameObject canvas = GameObject.FindWithTag("Canvas");
-
-        _modes.Add(ControlMode.FreeRoam, new FreeRoam(playerControls, canvas));
-        _modes.Add(ControlMode.DimScreen, new DimScreen(playerControls, canvas));
-        _modes.Add(ControlMode.ControlsFrozen, new ControlsFrozen(playerControls, canvas));
-
-        foreach (Mode mode in _modes.Values) {
-            mode.Leave();
-        }
-
-#if !(UNITY_EDITOR)
-        CurrentControlMode = ControlMode.FreeRoam;
-#endif
-
-        _currentMode = _modes[CurrentControlMode];
-        _currentMode.Enter();
-
         _modeList.Add(new ControlModeWithId { Id = _instanceId, ControlMode = CurrentControlMode });
 
         OnGameOver += delegate { SetControlMode(_instanceId, ControlMode.ControlsFrozen); };
     }
 
     public void GameWon() {
+        PlayerMechanics.Instance.SetControlMode(ControlMode.ControlsFrozen);
         if (OnGameWon != null) OnGameWon(null, null);
     }
 
     public void GameOver(object sender = null, EventArgs e = null) {
+        SoundController.instance.Play("loose");
+        GetComponent<AudioSource>().Stop();
         if (OnGameOver != null) OnGameOver(null, null);
     }
 

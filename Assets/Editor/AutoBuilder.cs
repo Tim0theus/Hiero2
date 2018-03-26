@@ -74,7 +74,7 @@ public static class AutoBuilder {
         const string buildName = "OSX";
         const string buildFileExtention = ".app";
 
-        return Build(buildName, buildFileExtention, BuildTarget.StandaloneOSXUniversal, true, BuildOutput.Directory);
+        return Build(buildName, buildFileExtention, BuildTarget.StandaloneOSX, true, BuildOutput.Directory);
     }
 
     [MenuItem("Build/Build Linux", false, 15)]
@@ -155,9 +155,7 @@ public static class AutoBuilder {
         string buildVersion;
 
         switch (buildTarget) {
-            case BuildTarget.StandaloneOSXIntel:
-            case BuildTarget.StandaloneOSXIntel64:
-            case BuildTarget.StandaloneOSXUniversal:
+            case BuildTarget.StandaloneOSX:
                 buildVersion = PlayerSettings.macOS.buildNumber;
                 break;
             case BuildTarget.iOS:
@@ -184,9 +182,7 @@ public static class AutoBuilder {
         buildVersion = string.Format("{0}{1:D2}", plainVersion, buildPart);
 
         switch (buildTarget) {
-            case BuildTarget.StandaloneOSXIntel:
-            case BuildTarget.StandaloneOSXIntel64:
-            case BuildTarget.StandaloneOSXUniversal:
+            case BuildTarget.StandaloneOSX:
                 PlayerSettings.macOS.buildNumber = buildVersion;
                 break;
             case BuildTarget.iOS:

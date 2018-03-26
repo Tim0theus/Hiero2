@@ -42,7 +42,7 @@ public class SlideTile : Tile, IPointerDownHandler, IPointerUpHandler {
         if ((CurrentCorrdinates - OriginalCooridinates).magnitude < 0.1) {
             Solved();
         }
-        else if (Status.Solved) {
+        else if (IsSolved) {
             Failed();
         }
     }

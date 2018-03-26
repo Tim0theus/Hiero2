@@ -8,10 +8,10 @@ public class TileSlotBackground : FaderActivatable, IEnableable {
     }
 
     public void Enable() {
-        Fader.Activate();
+        Activate();
     }
 
     public void Disable() {
-        Fader.DeActivate();
+        DeActivate();
     }
 }

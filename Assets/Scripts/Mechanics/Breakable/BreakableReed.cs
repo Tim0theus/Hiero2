@@ -16,8 +16,8 @@ public class BreakableReed : Breakable {
         }
     }
 
-    public override void Break() {
-        base.Break();
+    public override void Break(bool silent = false) {
+        base.Break(silent);
 
         if (Highlight) {
             _fader.DeActivate();

@@ -18,7 +18,7 @@ public class RiddleChangesMode : RiddleAggregator {
         base.UpdateStatus(observable);
         Riddle riddle = (Riddle)observable;
 
-        if (riddle.Status.Solved && _riddleToMode.ContainsKey(riddle)) {
+        if (riddle.IsSolved && _riddleToMode.ContainsKey(riddle)) {
             PlayerMechanics.Instance.SetControlMode(_instanceId, _riddleToMode[riddle]);
         }
     }

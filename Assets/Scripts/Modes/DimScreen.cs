@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class DimScreen : Mode {
 
-    public DimScreen(PlayerControls playerControls, GameObject canvas) {
-        InputControlElement lookControlElement = playerControls.LookControlElement;
-        InputControlElement moveControlElement = playerControls.MoveControlElement;
+    public DimScreen(GameObject canvas) {
+        InputControlElement lookControlElement = PlayerControls.Instance.LookControlElement;
+        InputControlElement moveControlElement = PlayerControls.Instance.MoveControlElement;
 
         FullscreenOverlay fullscreenOverlay = canvas.transform.Find("BlackScreenUI").GetComponentInChildren<FullscreenOverlay>();
         Timer timer = canvas.GetComponentInChildren<Timer>();
 
         Activate.Add(fullscreenOverlay);
 
-        if (playerControls.CurrentType == ControlType.MouseKeyboard) {
-            Activate.Add(playerControls.LookControlElement);
+        if (PlayerControls.Instance.CurrentType == ControlType.MouseKeyboard) {
+            Activate.Add(PlayerControls.Instance.LookControlElement);
         }
         else {
             DeActivate.Add(lookControlElement);

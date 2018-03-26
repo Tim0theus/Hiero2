@@ -33,8 +33,15 @@ public class PutDown : Riddle, IPointerDownHandler, IPointerUpHandler {
         }
     }
 
+    public override void Solve()
+    {
+        base.Solve();
+        GetComponent<Collider>().enabled = false;
+        enabled = false;
+    }
+
     private void Awake() {
-        GetComponent<MeshRenderer>().enabled = false;
+        if (GetComponent<MeshRenderer>()) GetComponent<MeshRenderer>().enabled = false;
         _audioSource = GetComponent<AudioSource>();
 
         _target = transform.Find("Target");

@@ -1,10 +1,7 @@
 public class MouseKeyboardControlScheme : ControlScheme {
-    private Mouse _mouse;
 
     private void Awake() {
-        _mouse = Mouse.Instance;
-
-        LookControl = _mouse;
+        LookControl = Mouse.Instance;
         MoveControl = gameObject.AddComponent<Keyboard>();
     }
 
@@ -14,12 +11,12 @@ public class MouseKeyboardControlScheme : ControlScheme {
     }
 
     public override void Activate() {
-        _mouse.enabled = true;
+        Mouse.Instance.enabled = true;
         base.Activate();
     }
 
     public override void DeActivate() {
-        _mouse.enabled = false;
+        Mouse.Instance.enabled = false;
         base.DeActivate();
     }
 }

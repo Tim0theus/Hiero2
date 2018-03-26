@@ -34,7 +34,12 @@ public class BreakableVase : Breakable {
     }
 
     public override void OnPointerUp(PointerEventData eventData) {
-        if (_requiredGlyph != LiteralPicker.Current.GlyphCode) return;
+        if (LiteralPicker.Current.GlyphCode != _requiredGlyph)
+        {
+            SoundController.instance.Play("error");
+            GameControl.instance.SubtractPoint(null, null);
+            return;
+        }
 
         if (eventData.button == PointerEventData.InputButton.Left) {
             RaycastResult raycastResult = eventData.pointerCurrentRaycast;
@@ -47,8 +52,8 @@ public class BreakableVase : Breakable {
         }
     }
 
-    public override void Break() {
-        base.Break();
+    public override void Break(bool silent = false) {
+        base.Break(silent);
 
         foreach (Rigidbody rigidbody in Rigidbodies) {
             rigidbody.AddExplosionForce(100, _explosionPosition, 1);

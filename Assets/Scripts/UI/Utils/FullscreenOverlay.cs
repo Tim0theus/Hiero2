@@ -5,9 +5,12 @@ using UnityEngine.UI;
 public class FullscreenOverlay : UIControl {
     private Image _image;
 
+    private Color NormalColor;
+
     private void Awake() {
         _image = GetComponent<Image>();
-        _image.color = NormalColor;
+        NormalColor = _image.color;
+
 
         if (StartInactive) {
             DeActivate(0);
@@ -18,6 +21,13 @@ public class FullscreenOverlay : UIControl {
         _image.raycastTarget = true;
 
         _image.CrossFadeColor(NormalColor, FadeDuration, false, true);
+    }
+
+    public void ActiveImmediately()
+    {
+        _image.raycastTarget = true;
+
+        _image.CrossFadeColor(NormalColor, 0, false, true);
     }
 
     public override void DeActivate() {

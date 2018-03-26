@@ -19,10 +19,30 @@ public class TouchGlyph : Riddle, IActivatable, IPointerDownHandler, IPointerUpH
         Reset();
     }
 
+    public override void Reset()
+    {
+        base.Reset();
+        _collider.enabled = true;
+        _fader.DeActivate();
+    }
+
+    public override void Solve()
+    {
+        base.Solve();
+        Activate();
+        _collider.enabled = false;
+    }
+
     public void OnPointerDown(PointerEventData eventData) { }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if (_requiredGlyph != LiteralPicker.Current.GlyphCode) return;
+        if (LiteralPicker.Current.GlyphCode != _requiredGlyph)
+        {
+            SoundController.instance.Play("error");
+            Failed();
+            Reset();
+            return;
+        }
 
         if (eventData.button == PointerEventData.InputButton.Left) {
             Activate();
@@ -31,7 +51,7 @@ public class TouchGlyph : Riddle, IActivatable, IPointerDownHandler, IPointerUpH
         }
     }
 
-    private void Start() {
+    private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         _requiredGlyph = renderer.ExtractGlyphName();
 

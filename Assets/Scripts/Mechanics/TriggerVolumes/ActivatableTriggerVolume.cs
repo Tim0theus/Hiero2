@@ -9,7 +9,11 @@ public class ActivatableTriggerVolume : TriggerVolume {
         }
     }
 
-    protected override void Deactivte() {
+    protected override void Check()
+    {
+    }
+
+    protected override void Deactivate() {
         foreach (Activatable activatable in Activatables) {
             activatable.DeActivate();
         }

@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: a4b8b9d3200769e4da3bee0bd9193c4e
+timeCreated: 1512558296
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Heart
+    100002: Man
+    100004: playing_board_005
+    100006: playing_board_006
+    100008: playing_board_007
+    100010: playing_board_008
+    100012: Scepter
+    100014: //RootNode
+    100016: separators_1
+    100018: separators_2
+    100020: separators_3
+    100022: separators_4
+    100024: Stoerche
+    100026: wavve_3
+    400000: Heart
+    400002: Man
+    400004: playing_board_005
+    400006: playing_board_006
+    400008: playing_board_007
+    400010: playing_board_008
+    400012: Scepter
+    400014: //RootNode
+    400016: separators_1
+    400018: separators_2
+    400020: separators_3
+    400022: separators_4
+    400024: Stoerche
+    400026: wavve_3
+    2300000: Heart
+    2300002: Man
+    2300004: playing_board_005
+    2300006: playing_board_006
+    2300008: playing_board_007
+    2300010: playing_board_008
+    2300012: Scepter
+    2300014: separators_1
+    2300016: separators_2
+    2300018: separators_3
+    2300020: separators_4
+    2300022: Stoerche
+    2300024: wavve_3
+    3300000: Heart
+    3300002: Man
+    3300004: playing_board_005
+    3300006: playing_board_006
+    3300008: playing_board_007
+    3300010: playing_board_008
+    3300012: Scepter
+    3300014: separators_1
+    3300016: separators_2
+    3300018: separators_3
+    3300020: separators_4
+    3300022: Stoerche
+    3300024: wavve_3
+    4300000: Man
+    4300002: Heart
+    4300004: Stoerche
+    4300006: Scepter
+    4300008: wavve_3
+    4300010: playing_board_008
+    4300012: separators_4
+    4300014: separators_3
+    4300016: separators_2
+    4300018: separators_1
+    4300020: playing_board_007
+    4300022: playing_board_006
+    4300024: playing_board_005
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001__0010-beech-wood-light-wood-fine-texture-seamless-hr_jpg
+    second: {fileID: 2100000, guid: 82f6275a6882f434da554c881583e4d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001__184993497_jpg
+    second: {fileID: 2100000, guid: f0a747c4deaa4f84b81660b5aac2741b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__184993497_jpg
+    second: {fileID: 2100000, guid: f0a747c4deaa4f84b81660b5aac2741b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__184993497_jpg
+    second: {fileID: 2100000, guid: f0a747c4deaa4f84b81660b5aac2741b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SVGMat
+    second: {fileID: 2100000, guid: aae476ce2231c734180da5a835e2cb2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SVGMat_006
+    second: {fileID: 2100000, guid: 94921dde6630eeb4b8a185105649ddfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SVGMat_007
+    second: {fileID: 2100000, guid: 81b16b3ade769ea449ac36539d3216f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SVGMat_010
+    second: {fileID: 2100000, guid: 90a470f5483dc1c439ce65cf34c72235, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SVGMat_011
+    second: {fileID: 2100000, guid: 56a9c8f54e6dcbf4fb7f8db2372a2b54, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

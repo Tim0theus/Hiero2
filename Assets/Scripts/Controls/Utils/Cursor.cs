@@ -7,7 +7,14 @@ public class Cursor : FaderActivatable {
     public static Cursor Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         Fader = ImageFader.Create(GetComponent<Image>(), new Color(1, 1, 1, 0.5f), 3);
     }

@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Translator : UIControl, IEnableable {
@@ -8,8 +9,12 @@ public class Translator : UIControl, IEnableable {
     private bool _isHidden;
     private bool _enabled;
 
-    private void Start() {
+    private Color NormalColor;
+
+    private void Awake() {
         _image = GetComponent<Image>();
+        NormalColor = _image.color;
+
         _image.CrossFadeColor(InactiveColor, 0, false, true);
 
         _isHidden = true;
@@ -33,7 +38,7 @@ public class Translator : UIControl, IEnableable {
     }
 
     private void UpdateView() {
-        _image.sprite = (_displayMode == DisplayMode.Hierglyph) ? LiteralPicker.Current.Transliteration : LiteralPicker.Current.Hieroglyph;
+        if (_image) _image.sprite = (_displayMode == DisplayMode.Hierglyph) ? LiteralPicker.Current.Transliteration : LiteralPicker.Current.Hieroglyph;
 
         if (_isHidden) {
             Activate();
@@ -41,7 +46,7 @@ public class Translator : UIControl, IEnableable {
     }
 
     public override void Activate() {
-        if (_enabled && _image.sprite != null) {
+        if (_enabled && _image != null) {
             _image.CrossFadeColor(NormalColor, FadeDuration, false, true);
         }
     }

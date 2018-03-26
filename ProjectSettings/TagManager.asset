@@ -15,6 +15,9 @@ TagManager:
   - MediumDifficulty
   - Spawn
   - MainOverlay
+  - Options
+  - TagLight
+  - Stick
   layers:
   - Default
   - TransparentFX
@@ -28,7 +31,7 @@ TagManager:
   - Shards
   - Player
   - Volumes
-  - 
+  - Inside
   - 
   - 
   - 

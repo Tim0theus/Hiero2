@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(AudioSource))]
 public class Breakable : Riddle, IPointerDownHandler, IPointerUpHandler {
-    private const float FreezeTimer = 5;
+    private const float FreezeTimer = 3;
 
     public GameObject SimplifiedMesh;
     public List<Rigidbody> Fixed;
@@ -51,8 +51,13 @@ public class Breakable : Riddle, IPointerDownHandler, IPointerUpHandler {
         _audioSource = GetComponent<AudioSource>();
     }
 
+    public override void Solve()
+    {
+        base.Solve();
+        Break(true);
+    }
 
-    public virtual void Break() {
+    public virtual void Break(bool silent = false) {
         FreezeUp = true;
 
         foreach (Rigidbody rigidbody in Rigidbodies) {
@@ -62,7 +67,7 @@ public class Breakable : Riddle, IPointerDownHandler, IPointerUpHandler {
         SimplifiedMesh.SetActive(false);
         GetComponent<Collider>().enabled = false;
 
-        if (BreakSounds.Count > 0) {
+        if (!silent && BreakSounds.Count > 0) {
             int index = Random.Range(0, BreakSounds.Count);
             _audioSource.PlayOneShot(BreakSounds[index]);
         }
@@ -78,6 +83,7 @@ public class Breakable : Riddle, IPointerDownHandler, IPointerUpHandler {
                 foreach (Rigidbody rigidbody in Rigidbodies) {
                     rigidbody.constraints = RigidbodyConstraints.FreezeAll;
                     rigidbody.GetComponent<Collider>().enabled = false;
+                    rigidbody.transform.position = new Vector3(0, 0, 0);
                 }
                 enabled = false;
             }

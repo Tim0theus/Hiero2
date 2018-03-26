@@ -5,19 +5,17 @@ using UnityEngine.EventSystems;
 public class Menu : MonoBehaviour {
     public GameObject FirstToSelect;
     public ButtonControl BackButton;
-    public bool NoGroupControlInChildren;
+
+    public bool open;
 
     private readonly List<UIControl> _uiElements = new List<UIControl>();
 
-    private void Start() {
-        if (NoGroupControlInChildren) {
-            _uiElements.AddRange(transform.GetComponentsInChildren<UIControl>(false));
-        }
-        else {
-            _uiElements.AddRange(transform.GetComponentsInChildren<GroupControl>(false));
-            _uiElements.AddRange(transform.GetComponentsInChildren<ButtonControl>(false));
-        }
+    private void Awake()
+    {
+        _uiElements.AddRange(transform.GetComponentsInChildren<UIControl>(false));
+    }
 
+    public void Start() { 
         Close();
     }
 
@@ -40,6 +38,7 @@ public class Menu : MonoBehaviour {
             BackButton.Activate();
         }
 
+        open = true;
         enabled = true;
     }
 
@@ -52,6 +51,7 @@ public class Menu : MonoBehaviour {
             BackButton.DeActivate();
         }
 
+        open = false;
         enabled = false;
     }
 

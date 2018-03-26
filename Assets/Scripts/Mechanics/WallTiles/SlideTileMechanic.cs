@@ -139,6 +139,21 @@ public class SlideTileMechanic : MonoBehaviour {
         }
     }
 
+    public void Solve()
+    {
+        SlideTile[] slideTiles = gameObject.GetComponentsInChildren<SlideTile>();
+        Dictionary<int, SlideTile> tiles = slideTiles.ToDictionary(item => LinearIndex(item.OriginalCooridinates));
+        Dictionary<int, Vector3> positions = slideTiles.ToDictionary(item => LinearIndex(item.CurrentCorrdinates), item => item.transform.position);
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            SlideTile slideTile = tiles[i];
+
+            slideTile.transform.position = positions[i];
+            slideTile.CurrentCorrdinates = slideTile.OriginalCooridinates;
+        }
+    }
+
     private int LinearIndex(Vector2 coordinates) {
         return (int)(coordinates.x + coordinates.y * Columns);
     }

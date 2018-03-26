@@ -20,11 +20,22 @@ public class ButtonControl : HighlightableUIControl {
     }
 
     public override void Activate() {
-        _button.interactable = true;
+        _button.enabled = true;
         _image.raycastTarget = true;
 
-        _image.CrossFadeColor(NormalColor, FadeDuration, false, true);
-        _text.CrossFadeColor(NormalColor, FadeDuration, false, true);
+        _button.targetGraphic.raycastTarget = true;
+        _button.targetGraphic.canvasRenderer.SetAlpha(1);
+
+        if (_button.interactable)
+        {
+            _image.CrossFadeColor(_button.colors.normalColor, FadeDuration, false, true);
+            _text.CrossFadeColor(_button.colors.normalColor, FadeDuration, false, true);
+        }
+        else
+        {
+            _image.CrossFadeColor(_button.colors.disabledColor, FadeDuration, false, true);
+            _text.CrossFadeColor(_button.colors.disabledColor, FadeDuration, false, true);
+        }
     }
 
     public override void DeActivate() {
@@ -32,19 +43,23 @@ public class ButtonControl : HighlightableUIControl {
     }
 
     private void DeActivate(float fadeDuration) {
-        _button.interactable = false;
+        _button.enabled = false;
         _image.raycastTarget = false;
+
+        _button.targetGraphic.raycastTarget = false;
+        _button.targetGraphic.canvasRenderer.SetAlpha(0);
 
         _image.CrossFadeColor(InactiveColor, fadeDuration, false, true);
         _text.CrossFadeColor(InactiveColor, fadeDuration, false, true);
+
     }
 
     public override void Highlight() {
-        _text.CrossFadeColor(HighlightColor, FadeDuration, false, true);
+        _text.CrossFadeColor(_button.colors.highlightedColor, FadeDuration, false, true);
     }
 
     public override void DeHighlight() {
-        _text.CrossFadeColor(NormalColor, FadeDuration, false, true);
+        _text.CrossFadeColor(_button.colors.normalColor, FadeDuration, false, true);
     }
 
     public void Click() {

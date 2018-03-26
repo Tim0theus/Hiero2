@@ -26,7 +26,7 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
 
     private static readonly FocusChangedEventArgs FocusChangedEventArgs = new FocusChangedEventArgs();
 
-    private static LiteralPicker _instance;
+    public static LiteralPicker instance;
     private static int _instanceId;
 
     private static PickerGlyph _current;
@@ -35,7 +35,7 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
     private static Transform _transform;
     private static RectTransform _rectTransform;
 
-    private static readonly Dictionary<string, PickerGlyph> PickerGlyphs = new Dictionary<string, PickerGlyph>();
+    public static readonly Dictionary<string, PickerGlyph> PickerGlyphs = new Dictionary<string, PickerGlyph>();
     private static readonly Queue<PickerGlyph> NewGlyphs = new Queue<PickerGlyph>();
 
     private static float _absoluteOffset;
@@ -56,6 +56,8 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
     private static bool _animate;
     private static bool _newGlyph;
 
+    private static bool _beginClick;
+
     public void OnDrag(PointerEventData eventData) {
         if (!_newGlyph) {
             _inputOffset = eventData.delta.y / 2;
@@ -64,28 +66,37 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
 
             _inputOffset = 0;
         }
+        _beginClick = false;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
         _animate = true;
+        _beginClick = false;
     }
 
 
-    public void OnPointerDown(PointerEventData eventData) { }
+    public void OnPointerDown(PointerEventData eventData) {
+        _beginClick = true;
+    }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if (_current && _current.enabled) {
+        if (_beginClick && _current && _current.enabled) {
             _current.Touch();
             _current.SetMode(DisplayMode.Literal);
         }
     }
 
     private void Awake() {
-        _instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         _instanceId = GetInstanceID();
-    }
 
-    private void Start() {
         OnFocusChanged += FocusChanged;
 
         _transform = transform;
@@ -104,7 +115,10 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
         _overlay = transform.parent.GetComponentInChildren<FullscreenOverlay>();
         _animatorActivatable = _highlightImage.GetComponent<AnimatorActivatable>();
         _animatorActivatable.OnAnimationFinished += AddAnimationFinished;
+        PickerGlyphs.Clear();
+    }
 
+    private void Start() {
         DeActivate();
     }
 
@@ -139,13 +153,12 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
             Animate();
 
             if (Math.Abs(_toFocusOffset) > 0.1) {
-                float reducer = _toFocusOffset / 10;
-                reducer = Mathf.Clamp(reducer, -20, 20);
+                float reducer = _toFocusOffset * Time.deltaTime * 5;
                 _inputOffset = -reducer;
                 _toFocusOffset -= reducer;
             }
             else if (Math.Abs(_toCenterOffset) > 0.1) {
-                _inputOffset = -_toCenterOffset / 10;
+                _inputOffset = -_toCenterOffset / 5;
             }
             else {
                 _inputOffset = _toCenterOffset = _toFocusOffset = 0;
@@ -180,11 +193,61 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    public static string[] SaveGlyphs()
+    {
+        string[] arr = new string[PickerGlyphs.Count];
+
+        foreach(var k in PickerGlyphs)
+        {
+            arr[k.Value.Slot] = k.Key;
+        }
+
+        return arr;
+    }
+
+    public static void LoadGlyphs(string[] glyphs)
+    {
+        int slot = 0;
+
+        if (glyphs.Length < 1) return;
+
+        ExtendedGlyph glyph = ResourceLoader.Get(glyphs[0]);
+        PickerGlyph newPickerGlyph = PickerGlyph.Create(glyph, slot++, _transform, DisplayMode.Literal, false);
+        PickerGlyphs.Add(glyphs[0], newPickerGlyph);
+        _current = newPickerGlyph;
+        _last = newPickerGlyph;
+
+        newPickerGlyph.Highlight();
+        newPickerGlyph.Color = Global.Colors.HighlightYellow;
+
+        _absoluteOffset += _rectTransform.rect.width / 2;
+
+        instance.Activate();
+
+        for (int i = 1; i < glyphs.Length; i++)
+        {
+            glyph = ResourceLoader.Get(glyphs[i]);
+            newPickerGlyph = PickerGlyph.Create(glyph, slot++, _transform, DisplayMode.Literal, false);
+            PickerGlyphs.Add(glyphs[i], newPickerGlyph);
+            newPickerGlyph.Activate();
+        }
+
+        foreach (PickerGlyph pickerGlyph in PickerGlyphs.Values)
+        {
+            pickerGlyph.Offset = _absoluteOffset;
+        }
+
+        FocusOnGlyph(glyph.GlyphCode);
+
+    }
+
     public static void AddNewGlyph(string glyphCode, DisplayMode displayMode = DisplayMode.Hierglyph) {
         PickerGlyph newPickerGlyph = AddGlyph(glyphCode, displayMode);
 
         if (newPickerGlyph == null) return;
 
+        _overlay.Activate();
+        PlayerMechanics.Instance.SetControlMode(_instanceId, ControlMode.ControlsFrozen);
         newPickerGlyph.OnModeChanged += ModeChangeFinished;
         newPickerGlyph.Activate();
 
@@ -245,7 +308,7 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
 
             _absoluteOffset += _rectTransform.rect.width / 2;
 
-            _instance.Activate();
+            instance.Activate();
         }
 
         foreach (PickerGlyph pickerGlyph in PickerGlyphs.Values) {
@@ -265,11 +328,11 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
         _absoluteOffset = 0;
     }
 
-    private static void FocusOnGlyph(string glyphCode) {
+    public static void FocusOnGlyph(string glyphCode) {
         FocusOnGlyph(PickerGlyphs[glyphCode].Slot);
     }
 
-    private static void FocusOnGlyph(int slot) {
+    public static void FocusOnGlyph(int slot) {
         int currentSlot = _current.Slot;
 
         _toFocusOffset = _rectTransform.rect.width / 2 * (slot - currentSlot) + 0.001f;
@@ -323,6 +386,16 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    private static void RemoveCurrent()
+    {
+        int slot = PickerGlyphs[_current.Glyph.GlyphCode].Slot;
+        foreach (PickerGlyph p in PickerGlyphs.Values)
+        {
+            if (p.Slot > slot) p.Move(-1);
+        }
+        PickerGlyphs.Remove(_current.Glyph.GlyphCode);
+    }
+
 #if UNITY_EDITOR
 
     [CustomEditor(typeof(LiteralPicker))]
@@ -352,6 +425,11 @@ public class LiteralPicker : Activatable, IPointerDownHandler, IPointerUpHandler
             }
             if (GUILayout.Button("Deactivate")) {
                 literalPicker.DeActivate();
+            }
+
+            if (GUILayout.Button("RemoveCurrent"))
+            {
+                RemoveCurrent();
             }
 
             if (GUILayout.Button("Clear")) {

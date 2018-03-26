@@ -1,0 +1,11 @@
+𓈋	flat	mountain	𓈋	25	Dschu
+𓆛	flat	fish	𓆛	26	In
+𓁹	big	eye	𓁹	27	ir
+𓆱	flat	stick	𓆱	28	ht
+𓏠	flat	senet board game	𓏠	29	mn
+𓉐	flat	house	𓉐	30	Per
+𓊅	tall	wall	𓊅	31	Ineb
+󴗤	big	sandal strap	󴗤	32	ANCh
+𓄤	tall	heart and windpipe	𓄤	33	Nefer
+𓊮	tall	fire	𓊮	34	Rekhu
+𓌀	tall	waas sceptre	𓌀	35	Waas;

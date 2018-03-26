@@ -12,6 +12,15 @@ public class DoorLock : Riddle, IBeginDragHandler, IDragHandler {
     private Collider _collider;
     private Vector2 _lastPosition;
 
+    public override void Solve()
+    {
+        base.Solve();
+        if (UnsolvedIndciator) UnsolvedIndciator.DeActivate();
+
+        DoorLockTransform.localPosition = new Vector3(EndPositionX, 0, 0);
+        enabled = false;
+    }
+
     public void OnBeginDrag(PointerEventData eventData) {
         Ray ray = Camera.main.ScreenPointToRay(eventData.position);
         RaycastHit hit;

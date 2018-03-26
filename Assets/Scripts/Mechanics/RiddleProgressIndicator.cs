@@ -11,8 +11,8 @@ public class RiddleProgressIndicator : RiddleAggregator {
 
     public override void UpdateStatus(IObservable observable) {
         Riddle riddle = (Riddle)observable;
-        if (riddle.Status.Solved) {
-            Indicators[SolvedElements].Activate();
+        if (riddle.IsSolved) {
+            Indicators[SolvedElements-1].Activate();
         }
         base.UpdateStatus(observable);
     }

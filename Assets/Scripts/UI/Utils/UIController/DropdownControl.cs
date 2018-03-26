@@ -8,10 +8,14 @@ public class DropdownControl : HighlightableUIControl {
     private Image _background;
     private Text _text;
 
+    private Color NormalColor;
+
     private void Awake() {
         _dropdown = GetComponent<Dropdown>();
         _text = transform.Find("Label").GetComponent<Text>();
         _background = transform.Find("Background").GetComponent<Image>();
+
+        NormalColor = _text.color;
 
         if (StartInactive) {
             DeActivate(0);

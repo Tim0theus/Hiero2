@@ -34,8 +34,11 @@ public static class ResourceLoader {
         TextAsset uniliteralsContent = Resources.Load<TextAsset>("Mappings/Uniliterals");
         ProcessMapping(uniliteralsContent);
 
-        TextAsset additionalHieroglyphs = Resources.Load<TextAsset>("Mappings/Hieroglyphs");
-        ProcessMapping(additionalHieroglyphs);
+        //TextAsset additionalHieroglyphs = Resources.Load<TextAsset>("Mappings/Hieroglyphs");
+        //ProcessMapping(additionalHieroglyphs);
+
+        TextAsset multiliteralContent = Resources.Load<TextAsset>("Mappings/Multiliterals");
+        ProcessMapping(multiliteralContent);
     }
 
     private static void ProcessMapping(TextAsset textFileContent) {

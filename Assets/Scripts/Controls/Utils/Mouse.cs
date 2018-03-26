@@ -14,7 +14,14 @@ public class Mouse : InputControlElement {
     private float _scroll;
 
     private void Awake() {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         UnityEngine.Cursor.visible = false;
 

@@ -3,7 +3,8 @@ using UnityEngine;
 public enum State {
     Nothing,
     Activate,
-    Deactivate
+    Deactivate,
+    Check
 }
 
 [RequireComponent(typeof(Collider))]
@@ -32,6 +33,7 @@ public abstract class TriggerVolume : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+        if (other.tag != "Player") return;
         if (OneWay) {
             _entryPosition = other.transform.position;
             _entryDireciton = (_center - _entryPosition).normalized;
@@ -42,23 +44,31 @@ public abstract class TriggerVolume : MonoBehaviour {
                 Activate();
                 break;
             case State.Deactivate:
-                Deactivte();
+                Deactivate();
+                break;
+            case State.Check:
+                Check();
                 break;
         }
     }
 
     private void OnTriggerStay(Collider other) {
+        if (other.tag != "Player") return;
         switch (OnStay) {
             case State.Activate:
                 Activate();
                 break;
             case State.Deactivate:
-                Deactivte();
+                Deactivate();
+                break;
+            case State.Check:
+                Check();
                 break;
         }
     }
 
     private void OnTriggerExit(Collider other) {
+        if (other.tag != "Player") return;
         if (OneWay) {
             _exitDirection = (other.transform.position - _entryPosition).normalized;
             float exitAngle = Vector3.Dot(_exitDirection, _entryDireciton);
@@ -71,7 +81,10 @@ public abstract class TriggerVolume : MonoBehaviour {
                 Activate();
                 break;
             case State.Deactivate:
-                Deactivte();
+                Deactivate();
+                break;
+            case State.Check:
+                Check();
                 break;
         }
 
@@ -79,7 +92,8 @@ public abstract class TriggerVolume : MonoBehaviour {
     }
 
     protected abstract void Activate();
-    protected abstract void Deactivte();
+    protected abstract void Deactivate();
+    protected abstract void Check();
 
 }
 

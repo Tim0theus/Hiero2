@@ -11,6 +11,12 @@ public class SlideTileAggregator : RiddleAggregator {
         _slideTiles = GetComponentsInChildren<SlideTile>();
     }
 
+    public override void Solve()
+    {
+        base.Solve();
+        GetComponent<SlideTileMechanic>().Solve();
+    }
+
 
     public override void UpdateStatus(IObservable observable) {
         base.UpdateStatus(observable);

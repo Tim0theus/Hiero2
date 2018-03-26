@@ -60,6 +60,12 @@ public class DustOff : Riddle, IBeginDragHandler, IDragHandler {
         }
     }
 
+    public override void Solve()
+    {
+        base.Solve();
+        _fadeout = true;
+    }
+
     private void Awake() {
         _collider = GetComponent<Collider>();
 
@@ -83,6 +89,8 @@ public class DustOff : Riddle, IBeginDragHandler, IDragHandler {
         for (int c = 0; c < compBrush.Length; c++) {
             _compBrush[c] = 1 - compBrush[c].a;
         }
+
+        _material.SetTexture("_TransTex", _visTexture);
 
         _brightness = GetTextureBrightness();
         _threshold = _brightness * 0.3f;

@@ -52,7 +52,7 @@ public class PickerGlyph : Activatable {
     private bool _highlighted;
 
     private bool _inFocus;
-    private bool _new = true;
+    public bool _new = true;
     private float _time;
 
     private float _offset;
@@ -84,14 +84,14 @@ public class PickerGlyph : Activatable {
                 transform.localScale = Vector3.one * scale;
                 transform.localPosition = Vector3.left * position * _rectTransform.rect.width;
             }
-            else {
-                //scale back to normal
-                float scale = transform.localScale.x;
-                if (scale > 0.1) {
-                    transform.localScale -= Vector3.one * scale * Time.deltaTime;
-                    transform.localPosition -= Vector3.right * 3 * transform.localPosition.x * Time.deltaTime;
-                }
-            }
+            //else {
+            //    //scale back to normal
+            //    float scale = transform.localScale.x;
+            //    //if (scale > 0.1) {
+            //    //    transform.localScale -= Vector3.one * scale * Time.deltaTime;
+            //    //    transform.localPosition -= Vector3.right * 3 * transform.localPosition.x * Time.deltaTime;
+            //    //}
+            //}
         }
     }
 
@@ -115,7 +115,7 @@ public class PickerGlyph : Activatable {
         }
     }
 
-    public static PickerGlyph Create(ExtendedGlyph glyph, int slot, Transform parent, DisplayMode displayMode = DisplayMode.Literal) {
+    public static PickerGlyph Create(ExtendedGlyph glyph, int slot, Transform parent, DisplayMode displayMode = DisplayMode.Literal, bool newGlyph = true) {
         GameObject pickerGlyphObject = new GameObject(slot.ToString());
 
         PickerGlyph pickerGlyph = pickerGlyphObject.AddComponent<PickerGlyph>();
@@ -176,6 +176,8 @@ public class PickerGlyph : Activatable {
         pickerGlyph.Slot = slot;
         pickerGlyph.Glyph = glyph;
 
+        pickerGlyph._new = newGlyph;
+
         return pickerGlyph;
     }
 
@@ -207,8 +209,6 @@ public class PickerGlyph : Activatable {
         _fader.Activate(ModeChangeFinished);
 
         _currentDisplayMode = _newDisplayMode;
-
-        enabled = false;
     }
 
     private void ModeChangeFinished(object sender, EventArgs e) {
@@ -234,7 +234,9 @@ public class PickerGlyph : Activatable {
     }
 
     public void Touch() {
-        _new = false;
+        if (_new)
+            _new = false;
+        else if (_currentDisplayMode == DisplayMode.Literal) TabPicker.instance.Open();
     }
 
     public void Remove() {

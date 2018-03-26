@@ -15,12 +15,18 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
     public Vector3 Offset;
 
     private Renderer _renderer;
-    private SphereCollider _triggerCollider;
+    private Collider _triggerCollider;
 
     public void OnPointerDown(PointerEventData eventData) { }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if (!Inventory.HasFreeSlot || RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name) return;
+        if (!Inventory.HasFreeSlot) return;
+        if (RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name)
+        {
+            SoundController.instance.Play("error");
+            GameControl.instance.SubtractPoint(null, null);
+            return;
+        }
 
         if (eventData.button == PointerEventData.InputButton.Left) {
             RaycastResult raycastResult = eventData.pointerCurrentRaycast;
@@ -33,7 +39,9 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
 
     protected void Awake() {
         _renderer = GetComponent<Renderer>();
-        _triggerCollider = GetComponent<SphereCollider>();
+        _triggerCollider = GetComponent<Collider>();
+        Fader = MaterialFader.Create(GetComponent<Renderer>(), new Color(0.2f, 0.2f, 0.2f), Color.black, true, 1, true);
+        Fader.Activate();
     }
 
     private void Start() {
@@ -45,9 +53,6 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
         else if (string.IsNullOrEmpty(RiddleCode)) {
             Debug.LogWarning("Set 'GlyphCode' or 'RiddleCode' on " + name);
         }
-
-        Fader = MaterialFader.Create(GetComponent<Renderer>(), new Color(0.2f, 0.2f, 0.2f), Color.black, true, 1, true);
-        Fader.Activate();
     }
 
     protected virtual void Pickup() {
@@ -59,16 +64,30 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
     }
 
     public virtual void PutDown() {
-        _triggerCollider.enabled = false;
+        DeactivatePickup();
 
-        _renderer.shadowCastingMode = ShadowCastingMode.On;
-        _renderer.receiveShadows = true;
+        ActivateRenderer();
     }
 
     public virtual void Drop() {
         Fader.Activate();
 
+        ActivateRenderer();
+    }
+
+    public void ActivateRenderer()
+    {
         _renderer.shadowCastingMode = ShadowCastingMode.On;
         _renderer.receiveShadows = true;
+    }
+
+    protected void DeactivatePickup()
+    {
+        _triggerCollider.enabled = false;
+    }
+
+    protected void ActivatePickup()
+    {
+        _triggerCollider.enabled = true;
     }
 }

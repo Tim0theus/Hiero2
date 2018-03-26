@@ -23,11 +23,11 @@ public class ReadingDirection : RiddleAggregator, IActivatable {
         base.UpdateStatus(observable);
         Riddle riddle = (Riddle)observable;
 
-        if (riddle.Status.Failure) {
+        if (riddle.IsFailed) {
             _glyphs[SolvedElements].DeActivate();
             Reset();
         }
-        else if (riddle.Status.Solved) {
+        else if (riddle.IsSolved) {
             _glyphs[SolvedElements - 1].DeActivate();
         }
 

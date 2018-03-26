@@ -2,19 +2,16 @@
 
 Shader "FX/Water (Basic)" {
 Properties {
-	_opacity("Opacity", Range(0.0,1.0)) = 1
 	_horizonColor ("Horizon color", COLOR)  = ( .172 , .463 , .435 , 0)
 	_WaveScale ("Wave scale", Range (0.02,0.15)) = .07
 	[NoScaleOffset] _ColorControl ("Reflective color (RGB) fresnel (A) ", 2D) = "" { }
 	[NoScaleOffset] _BumpMap ("Waves Normalmap ", 2D) = "" { }
-	WaveSpeed("Wave speed (map1 x,y; map2 x,y)", Vector) = (19,9,-16,-7)
-}
+	WaveSpeed ("Wave speed (map1 x,y; map2 x,y)", Vector) = (19,9,-16,-7)
+	}
 
 CGINCLUDE
 
 #include "UnityCG.cginc"
-
-uniform float _opacity;
 
 uniform float4 _horizonColor;
 
@@ -59,12 +56,7 @@ ENDCG
 
 
 Subshader {
-	Tags {"Queue"="Transparent" "RenderType"="Transparent" }
-	LOD 100
-
-	ZWrite Off
-	Blend SrcAlpha OneMinusSrcAlpha
-
+	Tags { "RenderType"="Opaque" }
 	Pass {
 
 CGPROGRAM
@@ -86,7 +78,7 @@ half4 frag( v2f i ) : COLOR
 	
 	half4 col;
 	col.rgb = lerp( water.rgb, _horizonColor.rgb, water.a );
-	col.a = _opacity;//_horizonColor.a;
+	col.a = _horizonColor.a;
 
 	UNITY_APPLY_FOG(i.fogCoord, col);
 	return col;

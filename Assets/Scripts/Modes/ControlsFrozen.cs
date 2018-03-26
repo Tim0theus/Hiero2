@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ControlsFrozen : Mode {
 
-    public ControlsFrozen(PlayerControls playerControls, GameObject canvas) {
-        InputControlElement lookControlElement = playerControls.LookControlElement;
-        InputControlElement moveControlElement = playerControls.MoveControlElement;
+    public ControlsFrozen(GameObject canvas) {
+        InputControlElement lookControlElement = PlayerControls.Instance.LookControlElement;
+        InputControlElement moveControlElement = PlayerControls.Instance.MoveControlElement;
 
         Timer timer = canvas.GetComponentInChildren<Timer>();
 
-        if (playerControls.CurrentType == ControlType.MouseKeyboard) {
-            Activate.Add(playerControls.LookControlElement);
+        if (PlayerControls.Instance.CurrentType == ControlType.MouseKeyboard) {
+            Activate.Add(PlayerControls.Instance.LookControlElement);
         }
         else {
             DeActivate.Add(lookControlElement);

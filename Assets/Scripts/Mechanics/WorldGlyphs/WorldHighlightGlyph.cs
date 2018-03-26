@@ -35,6 +35,13 @@ public class WorldHighlightGlyph : Riddle, IActivatable, IPointerDownHandler, IP
         _fader.DeActivate();
     }
 
+    public override void Solve()
+    {
+        base.Solve();
+        _fader.ActivateFormPoint(1);
+        _touched = true;
+    }
+
 
     public void OnPointerDown(PointerEventData eventData) { }
 

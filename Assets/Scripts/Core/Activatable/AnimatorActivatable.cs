@@ -17,6 +17,7 @@ public class AnimatorActivatable : Activatable {
 
     public override void DeActivate() {
         Animator.SetTrigger("DeActivate");
+        AnimationFinished();
     }
 
     private void AnimationFinished() {
