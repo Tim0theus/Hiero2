@@ -185,6 +185,8 @@ public class GameControl : MonoBehaviour {
         dat.timerTime = _timer.GetTime();
         dat.difficulty = (int)player.GetComponent<PlayerMechanics>().CurrentDifficulty;
 
+        dat.mediumcosts = Hint.instance.mediumcosts;
+
         dat.dict = objectData;
 
         bf.Serialize(file, dat);
@@ -215,6 +217,7 @@ public class GameControl : MonoBehaviour {
                 player.GetComponent<PlayerMechanics>().SetDifficulty(dat.difficulty);
                 if (dat.difficulty == 2) _timer.Activate();
 
+                Hint.instance.mediumcosts = dat.mediumcosts;
 
                 objectData = dat.dict;
 
@@ -409,6 +412,8 @@ struct GameData
     public int difficulty;
     public float timerTime;
     public int points;
+
+    public int mediumcosts;
 
     public string[] glyphs;
 

@@ -20,6 +20,8 @@ public class Hint : MonoBehaviour, IPointerClickHandler
     private Image _panel;
     private Button _button;
 
+    public int mediumcosts;
+
     private HelperTrigger _current;
     public HelperTrigger GetCurrentHelper()
     {
@@ -31,7 +33,7 @@ public class Hint : MonoBehaviour, IPointerClickHandler
         if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Easy || (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium && GameControl.instance.GetPoints() > 9) || (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Hard && GameControl.instance.GetPoints() > 19))
         {
 
-                if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium) GameControl.instance.AddPoints(-10);
+                if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium) GameControl.instance.AddPoints(-mediumcosts++);
                 if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Hard) GameControl.instance.AddPoints(-20);
                 StartCoroutine(SwitchText());
                 _info.CrossFadeAlpha(1, 0, true);
@@ -89,6 +91,8 @@ public class Hint : MonoBehaviour, IPointerClickHandler
         _button.targetGraphic.CrossFadeAlpha(0, 0, true);
 
         _isHidden = true;
+
+        mediumcosts = 0;
 
         ResetTime();
     }
