@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Collider))]
 public class Buoyancy : MonoBehaviour {
-    [Range(0, 90)] public float SurfaceOffset;
+    [Range(0, 100)] public float SurfaceOffset;
     public float UpwardForce;
 
     private float _upperLimit;

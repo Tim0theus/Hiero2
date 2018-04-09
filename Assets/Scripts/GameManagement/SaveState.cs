@@ -14,6 +14,7 @@ public class SaveState : MonoBehaviour {
     private float elapsedTime;
 
     public bool useRigidbody;
+    public bool saveWithTime;
     private bool wasMoving = false;
 
     private Vector3 _lastposition;
@@ -42,7 +43,11 @@ public class SaveState : MonoBehaviour {
 
     public void Start()
     {
-        if (_item) _item.Placed += OnDone;
+        if (_item)
+        {
+            _item.PickedUp += OnDone;
+            _item.Placed += OnDone;
+        }
         if (_riddle)
         {
             _riddle.onSolved += OnDone;
@@ -54,31 +59,29 @@ public class SaveState : MonoBehaviour {
 
     public void Update()
     {
-        if (!_item && !_riddle)
+        
+        if (useRigidbody && _rigidbody)
         {
-            if (useRigidbody && _rigidbody)
+            if (_rigidbody.IsSleeping() && wasMoving)
             {
-                if (_rigidbody.IsSleeping() && wasMoving)
-                {
-                    Save();
-                    wasMoving = false;
-                }
-                else
-                {
-                    wasMoving = !_rigidbody.IsSleeping();
-                }
+                Save();
+                wasMoving = false;
             }
-            else if (saveSeconds < elapsedTime)
+            else
             {
-                elapsedTime = 0;
-                if ((transform.position - _lastposition).magnitude != 0)
-                {
-                    _lastposition = transform.position;
-                    Save();
-                }
+                wasMoving = !_rigidbody.IsSleeping();
             }
-            elapsedTime += Time.deltaTime;
         }
+        else if (saveWithTime && saveSeconds < elapsedTime)
+        {
+            elapsedTime = 0;
+            if ((transform.position - _lastposition).magnitude != 0)
+            {
+                _lastposition = transform.position;
+                Save();
+            }
+        }
+        elapsedTime += Time.deltaTime;
     }
 
     public void OnLoaded(object o, EventArgs e)
@@ -107,7 +110,6 @@ public class SaveState : MonoBehaviour {
             }
         }
         _lastposition = transform.position;
-
     }
 
     public void OnDone(object o, EventArgs e)
@@ -160,19 +162,30 @@ public class SaveState : MonoBehaviour {
     {
         myTransform t;
         myTransform itemT;
+        bool inventory = false;
+        bool placed = false;
 
         public ItemSave(GameObject g, GameObject itemg)
         {
             t = new myTransform(g.transform);
             itemT = new myTransform(itemg.transform);
+            if (itemg.transform.parent && itemg.transform.parent.tag == "Slot") inventory = true;
+            placed = g.GetComponent<PickUp>().placed;
         }
 
         public void Apply(GameObject g, GameObject itemg)
         {
             itemT.setTransform(itemg.transform);
             t.setTransform(g.transform);
-            g.GetComponent<RigidBodyPickUp>().PutDown();
-            g.GetComponent<RigidBodyPickUp>().DeActivate();
+            if (placed)
+            {
+                g.GetComponent<RigidBodyPickUp>().PutDown();
+                g.GetComponent<RigidBodyPickUp>().DeActivate();
+            }
+            if (inventory) {
+                g.GetComponent<RigidBodyPickUp>().Activate();
+                g.GetComponent<RigidBodyPickUp>().Pickup();
+            }
         }
     }
 

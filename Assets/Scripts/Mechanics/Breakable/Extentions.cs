@@ -21,7 +21,7 @@ public static class Extentions {
             }
         }
 
-        Debug.LogWarning(renderer.name + " has no valid Hieroglyph Texture set.");
+        Debug.LogWarning(renderer.transform.parent.name + " " + renderer.name + " has no valid Hieroglyph Texture set.");
         return string.Empty;
     }
 

@@ -36,15 +36,17 @@ public class TouchGlyph : Riddle, IActivatable, IPointerDownHandler, IPointerUpH
     public void OnPointerDown(PointerEventData eventData) { }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if (LiteralPicker.Current.GlyphCode != _requiredGlyph)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            SoundController.instance.Play("error");
-            Failed();
-            Reset();
-            return;
-        }
+            if (LiteralPicker.Current.GlyphCode != _requiredGlyph)
+            {
+                SoundController.instance.Play("error");
+                Failed();
+                Reset();
+                return;
+            }
 
-        if (eventData.button == PointerEventData.InputButton.Left) {
+
             Activate();
             Solved();
             _collider.enabled = false;

@@ -21,7 +21,7 @@ public class SenetFigure : PickUp {
             
         }
 
-        protected override void Pickup()
+        public override void Pickup()
         {
             senet.OnPickup(this);
             base.Pickup();

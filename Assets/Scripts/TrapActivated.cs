@@ -33,7 +33,7 @@ public class TrapActivated : Activatable
                     temp.spawnPos = spawnPos;
                     temp.yellowscreen = yellowscreen;
                 }
-            _timer = 1;
+            _timer = 0.1f;
         }
 
     }

@@ -18,6 +18,7 @@ TagManager:
   - Options
   - TagLight
   - Stick
+  - Slot
   layers:
   - Default
   - TransparentFX

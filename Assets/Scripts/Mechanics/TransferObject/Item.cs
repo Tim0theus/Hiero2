@@ -11,6 +11,7 @@ public class Item : MonoBehaviour {
     private DynamicTwoTransformTransformer _transformer;
 
     public event EventHandler Placed;
+    public event EventHandler PickedUp;
 
 
     private void Start() {
@@ -24,6 +25,7 @@ public class Item : MonoBehaviour {
     private void AddToInventory(object sender, EventArgs e) {
         Inventory.Add(_pickup.RiddleCode, this);
         Inventory.UnLock();
+        if (PickedUp != null) PickedUp(this, null);
     }
 
     public void Pickup() {

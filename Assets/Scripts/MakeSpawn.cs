@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class MakeSpawn : MonoBehaviour {
 
-    public TrapActivated trap;
+    public TrapActivated[] traps;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            trap.spawnPos = this.gameObject.transform;
+            foreach (TrapActivated t in traps)
+            {
+                t.spawnPos = this.gameObject.transform;
+            }
         }
     }
 }

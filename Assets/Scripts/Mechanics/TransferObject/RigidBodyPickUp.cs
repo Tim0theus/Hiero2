@@ -13,11 +13,12 @@ public class RigidBodyPickUp : PickUp {
         _meshCollider = GetComponent<MeshCollider>();
     }
 
-    protected override void Pickup() {
+    public override void Pickup() {
         base.Pickup();
 
         _rigidbody.isKinematic = true;
         _meshCollider.enabled = false;
+        enabled = true;
     }
 
     public override void PutDown() {

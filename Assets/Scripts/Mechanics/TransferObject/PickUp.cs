@@ -14,6 +14,8 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
     public Item Item;
     public Vector3 Offset;
 
+    public bool placed = false;
+
     private Renderer _renderer;
     private Collider _triggerCollider;
 
@@ -21,14 +23,15 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
 
     public void OnPointerUp(PointerEventData eventData) {
         if (!Inventory.HasFreeSlot) return;
-        if (RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name)
-        {
-            SoundController.instance.Play("error");
-            GameControl.instance.SubtractPoint(null, null);
-            return;
-        }
 
         if (eventData.button == PointerEventData.InputButton.Left) {
+            if (RequiredGlyph && LiteralPicker.Current.GlyphCode != RequiredGlyph.name)
+            {
+                SoundController.instance.Play("error");
+                GameControl.instance.SubtractPoint(null, null);
+                return;
+            }
+
             RaycastResult raycastResult = eventData.pointerCurrentRaycast;
 
             if (raycastResult.distance < Global.Constants.TouchDistance) {
@@ -42,6 +45,8 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
         _triggerCollider = GetComponent<Collider>();
         Fader = MaterialFader.Create(GetComponent<Renderer>(), new Color(0.2f, 0.2f, 0.2f), Color.black, true, 1, true);
         Fader.Activate();
+
+        placed = false;
     }
 
     private void Start() {
@@ -55,24 +60,27 @@ public class PickUp : FaderActivatable, IPointerDownHandler, IPointerUpHandler {
         }
     }
 
-    protected virtual void Pickup() {
+    public virtual void Pickup() {
         Item.Pickup();
         Fader.DeActivate();
 
         _renderer.shadowCastingMode = ShadowCastingMode.Off;
         _renderer.receiveShadows = false;
+        placed = false;
     }
 
     public virtual void PutDown() {
         DeactivatePickup();
 
         ActivateRenderer();
+        placed = true;
     }
 
     public virtual void Drop() {
         Fader.Activate();
 
         ActivateRenderer();
+        placed = false;
     }
 
     public void ActivateRenderer()

@@ -14,6 +14,8 @@ public class Timer : UIControl, IEnableable {
     public Image Indicator;
     public Image Background;
 
+    public Text timerText;
+
     private RectTransform _rectTransform;
 
     private Color _pulseColor;
@@ -71,6 +73,8 @@ public class Timer : UIControl, IEnableable {
     private void Update() {
         _time += Time.deltaTime;
         _pointTimer += Time.deltaTime;
+
+        timerText.text = "Time: " + (int)(_time / 60) + " minutes";
 
         if(_pointTimer > 10)
         {

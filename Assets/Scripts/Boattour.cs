@@ -13,6 +13,8 @@ public class Boattour : Activatable {
 
     public bool finishTour;
 
+    public PickUp[] woods;
+
     public Collider wall;
 
     private NavMeshAgent agent;
@@ -63,6 +65,7 @@ public class Boattour : Activatable {
                         {
                             player.transform.parent = null;
                             wall.enabled = false;
+                            PickWood();
                         }
                     }
                 }
@@ -71,11 +74,27 @@ public class Boattour : Activatable {
 
     public void StartTour()
     {
-        agent.enabled = true;
-        player.transform.parent = gameObject.transform;
-        agent.SetDestination(tour[0].position);
         GetComponent<Collider>().enabled = false;
+        if ((transform.position - target.transform.position).magnitude > 5)
+        {
+            wall.enabled = true;
+            agent.enabled = true;
+            player.transform.parent = gameObject.transform;
+            agent.SetDestination(tour[0].position);
+        }
+        else
+        {
+            PickWood();
+        }
+    }
 
+    public void PickWood()
+    {
+        foreach (PickUp w in woods)
+        {
+            w.enabled = true;
+            w.GetComponent<Collider>().enabled = true;
+        }
     }
 
     public override void Activate()

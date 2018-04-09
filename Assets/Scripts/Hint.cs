@@ -30,7 +30,7 @@ public class Hint : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData d)
     {
-        if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Easy || (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium && GameControl.instance.GetPoints() > 9) || (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Hard && GameControl.instance.GetPoints() > 19))
+        if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Easy || PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium || (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Hard && GameControl.instance.GetPoints() > 19))
         {
 
                 if (PlayerMechanics.Instance.CurrentDifficulty == DifficultyLevel.Medium) GameControl.instance.AddPoints(-mediumcosts++);
