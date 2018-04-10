@@ -10,17 +10,15 @@ public class ToggleControl : HighlightableUIControl {
 
     private Color NormalColor;
 
-    private void Awake() {
+    private void Awake()
+    {
         _toggle = GetComponent<Toggle>();
 
         _background = transform.GetChild(0).GetComponent<Image>();
         _checkmark = _background.transform.GetChild(0).GetComponent<Image>();
 
-        NormalColor = _background.color;
-    }
+        NormalColor = _checkmark.color;
 
-    private void Start()
-    {
         if (StartInactive)
         {
             DeActivate(0);

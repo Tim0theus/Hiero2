@@ -80,7 +80,19 @@ public class GameControl : MonoBehaviour {
         _options.transform.GetChild(4).GetComponentInChildren<Slider>().onValueChanged.AddListener(SetCameraSensitivity);
         _options.transform.GetChild(5).GetComponentInChildren<Slider>().onValueChanged.AddListener(SetMoveSpeed);
 
+        StartCoroutine(WaitAndDo(0.1f, () =>
+        {
+            _options.transform.GetChild(2).GetComponentInChildren<ToggleControl>().DeActivate();
+            _options.transform.GetChild(3).GetComponentInChildren<ToggleControl>().DeActivate();
+        }));
+
         Load();
+    }
+
+    IEnumerator WaitAndDo(float time, Action action)
+    {
+        yield return new WaitForSeconds(time);
+        action();
     }
 
     public void SetMusicVolume(float f)
@@ -232,8 +244,9 @@ public class GameControl : MonoBehaviour {
         }
         else
         {
-            PlayerMechanics.Instance.SetControlMode(ControlMode.DimScreen);
+            PlayerMechanics.Instance.SetControlMode(ControlMode.ControlsFrozen);
             tutorial.Open();
+
         }
 
         Riddle[] list = GameObject.FindObjectsOfType<Riddle>();
