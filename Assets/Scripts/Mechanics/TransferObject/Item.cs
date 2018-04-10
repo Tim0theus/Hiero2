@@ -12,7 +12,7 @@ public class Item : MonoBehaviour {
 
     public event EventHandler Placed;
     public event EventHandler PickedUp;
-
+    public event EventHandler Dropped;
 
     private void Start() {
         _transformer = DynamicTwoTransformTransformer.Create(transform, 2);
@@ -81,6 +81,7 @@ public class Item : MonoBehaviour {
 
     private void ResetPickup(object sender, EventArgs e) {
         _pickup.Drop();
+        if (Dropped != null) Dropped(this, null);
     }
 
     public void Drop(Vector3 worldPosition, Vector3 worldNormal) {

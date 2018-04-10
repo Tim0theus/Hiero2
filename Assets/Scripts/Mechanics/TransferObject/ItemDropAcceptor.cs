@@ -19,7 +19,11 @@ public class ItemDropAcceptor : MonoBehaviour, IPointerDownHandler, IPointerUpHa
             RaycastHit hit;
 
             if (_collider.Raycast(ray, out hit, Global.Constants.TouchDistance)) {
-                Inventory.Drop(hit.point, hit.normal);
+                int layerMask = (1 << 11);
+                layerMask = ~layerMask;
+                Collider[] tmp = Physics.OverlapSphere(hit.point + hit.normal, 0.5f, layerMask);
+                if (tmp.Length == 0)
+                    Inventory.Drop(hit.point, hit.normal);
             }
 
         }

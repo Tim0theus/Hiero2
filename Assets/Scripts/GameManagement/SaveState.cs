@@ -47,6 +47,7 @@ public class SaveState : MonoBehaviour {
         {
             _item.PickedUp += OnDone;
             _item.Placed += OnDone;
+            _item.Dropped += OnDone;
         }
         if (_riddle)
         {

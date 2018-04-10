@@ -1,0 +1,12 @@
+This is a project for a Master thesis, built upon the Prototype of HieroQuest from the TUM student Daniel Fedh.
+It is a riddle game for Egyptian hieroglyphs built in Unity3D.
+
+Website: http://home.in.tum.de/~beckmann/
+
+Patch Notes:
+
+v 1.6:
+Fixed a bug, which allowed dropping items in placed, which glitched them through objects.
+Saved positions of dropped items.
+
+
