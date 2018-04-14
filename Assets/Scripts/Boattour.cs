@@ -92,8 +92,11 @@ public class Boattour : Activatable {
     {
         foreach (PickUp w in woods)
         {
-            w.enabled = true;
-            w.GetComponent<Collider>().enabled = true;
+            if ((w.transform.position - gameObject.transform.position).magnitude < 10)
+            {
+                w.enabled = true;
+                w.GetComponent<Collider>().enabled = true;
+            }
         }
     }
 

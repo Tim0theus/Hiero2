@@ -67,35 +67,37 @@ public class SenetField : Riddle, IPointerDownHandler, IPointerUpHandler {
 
     }
 
+    // Check if Figure on Field is opponent
     public bool isEnemy(bool figureTypeToMove)
     {
         if (this.figure && this.figure.flat != figureTypeToMove) return true;
         return false;
     }
 
+    // Check if field can be moved to or not, due to a blockade of 3 enemy figures
     bool isBlockaded(bool figureTypeToMove)
     {
         if (id < 4 || id == 10 || id == 11 || id == 12 || id == 20 || id == 21 || id == 22 || id > 25) return false;
 
-        if (before.figure && before.before.figure && before.before.before.figure)
-        {
-            if (before.figure.flat != figureTypeToMove && before.before.figure.flat != figureTypeToMove && before.before.before.figure.flat != figureTypeToMove) return true;
-        }
+        if (before.isEnemy(figureTypeToMove) && before.before.isEnemy(figureTypeToMove) && before.before.before.isEnemy(figureTypeToMove)) return true;
+        if (before.before.isEnemy(figureTypeToMove) && before.before.before.isEnemy(figureTypeToMove) && before.before.before.before.isEnemy(figureTypeToMove)) return true;
 
         return false;
     }
 
+    // Check if field is blocked, because of 2 enemy figures or special field
     bool isBlocked(bool figureTypeToMove)
     {
         if (this.figure == null) return false;
         if (this.figure.flat == figureTypeToMove) return true;
         if (id < 1) return false;
         if (id > 25 || id == 14) return true;
-        if (before.figure && before.figure.flat != figureTypeToMove) return true;
-        if (after.figure && after.figure.flat != figureTypeToMove) return true;
+        if (before.isEnemy(figureTypeToMove)) return true;
+        if (after.isEnemy(figureTypeToMove)) return true;
         return false;
     }
 
+    // Check if the field can be moved to, from the currentID
     bool canMoveHere(bool figureTypeToMove, int currentId)
     {
         if (currentId > id) return false;
@@ -109,6 +111,7 @@ public class SenetField : Riddle, IPointerDownHandler, IPointerUpHandler {
         return true;
     }
 
+    // Check if the figure on the field can be moved by points
     public bool canMove(int points)
     {
         if (points < 1) return false;
@@ -130,6 +133,7 @@ public class SenetField : Riddle, IPointerDownHandler, IPointerUpHandler {
         return tmp.canMoveHere(this.figure.flat, this.id);
     }
 
+    // Returns target field when moving points. Null if out of field.
     public SenetField GetTarget(int points)
     {
         SenetField tmp = this;
