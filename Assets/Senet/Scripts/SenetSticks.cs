@@ -65,6 +65,7 @@ public class SenetSticks : Activatable, IPointerDownHandler, IPointerUpHandler {
         }
 	}
 
+    // Pick sticks up and throw dem down. Then wait for the result. If waiting too long, throw again.
 	void FixedUpdate () {
 
         if (throwTimer > 0)
@@ -119,6 +120,7 @@ public class SenetSticks : Activatable, IPointerDownHandler, IPointerUpHandler {
         sticks_floor.Play();
     }
 
+    // Determine thrown points, by determining if white side is up for each stick.
     public int getNumber()
     {
         int sum = 0;

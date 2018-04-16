@@ -79,6 +79,7 @@ public class SenetMain : Riddle {
         StartGame();
 	}
 
+    // Clean up figures and set figures on field
     public void StartGame()
     {
         TidyUp();
@@ -103,6 +104,7 @@ public class SenetMain : Riddle {
         if (IsAI()) sticks.ThrowSticks();
     }
 
+    // Check if it' AIs turn
     private bool IsAI()
     {
         if (ai1 && ai1.figureType == turn) return true;
@@ -110,6 +112,8 @@ public class SenetMain : Riddle {
         return false;
     }
 
+
+    // Show Ai all movable figures
     private void AssignFigureToAI(GameObject fig)
     {
         SenetFigure tmp = fig.GetComponentInChildren<SenetFigure>();
@@ -148,6 +152,7 @@ public class SenetMain : Riddle {
         }
     }
 
+    // Activate movable Figures
     private void ActivateFigures()
     {
         bool active = false;
@@ -217,7 +222,7 @@ public class SenetMain : Riddle {
         }
     }
 
-
+    // Determine if figure is out of field and game is won or lost on pickup. Or let the figure to be placed on possible fields.
     public bool OnPickup(SenetFigure fig)
     {
         DeactivateFigures();
@@ -251,7 +256,7 @@ public class SenetMain : Riddle {
             ChangeTurns();
 
             return false;
-        } //TODO: Figure out of field
+        }
         previousField.Activate();
         target.Activate();
 
@@ -262,6 +267,7 @@ public class SenetMain : Riddle {
         return true;
     }
 
+    // Determine what happens on PutDown of figure, Switch, etc.
     public void OnPutDown()
     {
         foreach (GameObject particle in particles)

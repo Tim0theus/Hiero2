@@ -21,6 +21,7 @@ public class SenetAI : MonoBehaviour {
 		
 	}
 
+    // Add figure to move list of AI, with certain priority
     public void AddPossibleMoveFigure(SenetFigure fig)
     {
         moves.Add(fig);
@@ -34,6 +35,7 @@ public class SenetAI : MonoBehaviour {
         priorities.Add(tmp);
     }
 
+    // Move highest priority figure
     public IEnumerator StartMovement()
     {
         yield return new WaitForSecondsRealtime (2);

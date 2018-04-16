@@ -68,6 +68,7 @@ public class GameControl : MonoBehaviour {
     private void Start() {
         _mainOverlay.DeActivate();
 
+        // Get Settings out of PlayerPrefs
         _options.transform.GetChild(1).GetComponentInChildren<Slider>().value = PlayerPrefs.GetFloat("Music Volume", 0.5f);
         _options.transform.GetChild(2).GetComponentInChildren<Toggle>().isOn = PlayerPrefs.GetInt("Invert Camera Y", 0) ==  0 ? false : true;
         _options.transform.GetChild(3).GetComponentInChildren<Toggle>().isOn = PlayerPrefs.GetInt("Invert Scrollwheel", 0) == 0 ? false : true;
@@ -80,6 +81,7 @@ public class GameControl : MonoBehaviour {
         _options.transform.GetChild(4).GetComponentInChildren<Slider>().onValueChanged.AddListener(SetCameraSensitivity);
         _options.transform.GetChild(5).GetComponentInChildren<Slider>().onValueChanged.AddListener(SetMoveSpeed);
 
+        // Needed because if toggle is set it is visble, though menu not open
         StartCoroutine(WaitAndDo(0.1f, () =>
         {
             _options.transform.GetChild(2).GetComponentInChildren<ToggleControl>().DeActivate();
@@ -182,6 +184,7 @@ public class GameControl : MonoBehaviour {
         }
     }
 
+    // Serialize binary file to save
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -205,6 +208,7 @@ public class GameControl : MonoBehaviour {
         file.Close();
     }
 
+    // Load Save or Set Player on Spawnpoint
     private void Load()
     {
         if (File.Exists(Application.persistentDataPath + "/game.dat"))

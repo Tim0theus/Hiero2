@@ -61,6 +61,7 @@ public class SaveState : MonoBehaviour {
     public void Update()
     {
         
+        // Either use rigidbody if activated or save each saveSeconds or only for events.
         if (useRigidbody && _rigidbody)
         {
             if (_rigidbody.IsSleeping() && wasMoving)
@@ -85,6 +86,7 @@ public class SaveState : MonoBehaviour {
         elapsedTime += Time.deltaTime;
     }
 
+    // When Game is Loaded Aplly saved Data
     public void OnLoaded(object o, EventArgs e)
     {
         Stream s;
@@ -118,6 +120,7 @@ public class SaveState : MonoBehaviour {
         Save();
     }
 
+    // Serialize object, when saving.
     void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();

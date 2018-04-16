@@ -5,6 +5,15 @@ Website: http://home.in.tum.de/~beckmann/
 
 Patch Notes:
 
+v 1.8:
+Reorderd and commeted a lot of scripts.
+
+v 1.7:
+Fixed bug that boat resets wood planks.
+Wall bug fixed, for canyon.
+Rewritten some hints to be more helpful.
+
+
 v 1.6:
 Fixed a bug, which allowed dropping items in placed, which glitched them through objects.
 Saved positions of dropped items.
